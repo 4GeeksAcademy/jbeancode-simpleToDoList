@@ -18,19 +18,23 @@ const Home = () => {
 		}
 	}
 	return (
-		<div className="text-center w-50 m-auto">
+		<div className="w-50 m-auto">
 			<h1 className="text-center mt-5">To Do List!</h1>
 			<div className="d-flex justify-content-center">
-				<input type = "text" className="" value = {inputValue} onChange={(event) => setInputValue(event.target.value)} onKeyDown={handleInputChange}/>
+				<input type = "text" className="me-2 rounded-3" value = {inputValue} onChange={(event) => setInputValue(event.target.value)} onKeyDown={handleInputChange}/>
 				<button type="button" className="btn btn-primary" onClick={() => addTodo()} >Add Task</button>
 			</div>
+			<div className="">
 			{todos.map((todoValue,index) => (
 					<Todo todoValue={todoValue} setTodos = {setTodos} index={index} key={index} todos={todos}/>
 				))}
-			
-			<div className="bg-primary-subtle m-auto w-50">{ todos.length === 1 ? `${todos.length} item left!` : `${todos.length} items left!` } </div>
-				<p>Made by love by JBeanCode
-				</p>
+			</div>
+			<div className="bg-primary-subtle row py-2 rounded-3">
+				<p className="text-end mb-0">{ todos.length === 1 ? `${todos.length} item left!` : `${todos.length} items left!` }</p>
+			</div>
+			<div className="mt-5 text-center">
+				<p>Made by <strong className="text-danger">love</strong> by JBeanCode</p>
+			</div>
 		</div>
 	);
 };
