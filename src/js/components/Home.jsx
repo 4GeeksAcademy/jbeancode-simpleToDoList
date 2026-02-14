@@ -1,26 +1,36 @@
-import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useState } from "react";
+import { Todo } from "./Todo";
 
 //create your first component
 const Home = () => {
+	const [inputValue, setInputValue] = useState("")
+	const [todos, setTodos] = useState([])
+	
+	const handleInputChange = (event) => {
+		if(event.key === "Enter") {
+			addTodo();
+		}
+	}
+	const addTodo = () => {
+		if(inputValue.length > 0){
+			setTodos([...todos, inputValue])
+			setInputValue("")
+		}
+	}
 	return (
-		<div className="text-center">
-            
-
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="text-center w-50 m-auto">
+			<h1 className="text-center mt-5">To Do List!</h1>
+			<div className="d-flex justify-content-center">
+				<input type = "text" className="" value = {inputValue} onChange={(event) => setInputValue(event.target.value)} onKeyDown={handleInputChange}/>
+				<button type="button" className="btn btn-primary" onClick={() => addTodo()} >Add Task</button>
+			</div>
+			{todos.map((todoValue,index) => (
+					<Todo todoValue={todoValue} setTodos = {setTodos} index={index} key={index} todos={todos}/>
+				))}
+			
+			<div className="bg-primary-subtle m-auto w-50">{ todos.length === 1 ? `${todos.length} item left!` : `${todos.length} items left!` } </div>
+				<p>Made by love by JBeanCode
+				</p>
 		</div>
 	);
 };
