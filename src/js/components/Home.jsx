@@ -29,7 +29,7 @@ const Home = () => {
 					<Todo todoValue={todoValue} setTodos = {setTodos} index={index} key={index} todos={todos}/>
 				))}
 			</div>
-			<div className="bg-primary-subtle row py-2 rounded-3">
+			<div className={`bg-primary-subtle row py-2 rounded-3 ${todos.length < 1 ? "bg-success-subtle" : ""}`}>
 				<p className="text-end mb-0">{ todos.length === 1 ? `${todos.length} item left!` : `${todos.length} items left!` }</p>
 			</div>
 			<div className="mt-5 text-center">
